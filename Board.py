@@ -72,7 +72,7 @@ class Board:
                     distance += (abs(target_position[0] - row) + abs(target_position[1] - column))
         return distance
 
-    def shuffle(self, number_of_moviments = randint(1000,2000)):
+    def shuffle(self, number_of_moviments = randint(10,20)):
         for i in range(0, number_of_moviments):
             self.move(randint(1,4))
     
@@ -82,28 +82,3 @@ class Board:
         board.zero_position[1] = self.zero_position[1]
         board.board = self.board.copy()
         return board
-
-
-        
-
-target = Board(3)
-board = Board(3)
-print(target)
-print(board)
-print(target == board)
-print(target.manhatan_distance_target())
-target.shuffle()
-print(target)
-print(target.manhatan_distance_target())
-
-lista = [target, board]
-# target.move_down()
-print(target in lista)
-board = target.copy()
-print(board)
-board.move_down()
-print(target)
-print(board)
-target.move_down()
-print(target)
-print(target == board)
