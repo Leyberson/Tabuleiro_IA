@@ -51,6 +51,16 @@ class Board:
             self.board[self.zero_position[0]][self.zero_position[1]] = self.board[self.zero_position[0]][self.zero_position[1] - 1]
             self.board[self.zero_position[0]][self.zero_position[1] - 1] = 0
             self.zero_position[1] -= 1
+    
+    def move(self, next_moviment):
+        if next_moviment == 1:
+            self.move_down()
+        elif next_moviment == 2:
+            self.move_up()
+        elif next_moviment == 3:
+            self.move_left()
+        elif next_moviment == 4:
+            self.move_right()
 
     def manhatan_distance_target(self):
         distance = 0
@@ -64,27 +74,36 @@ class Board:
 
     def shuffle(self, number_of_moviments = randint(1000,2000)):
         for i in range(0, number_of_moviments):
-            next_moviment = randint(1,4)
-            if next_moviment == 1:
-                self.move_down()
-            elif next_moviment == 2:
-                self.move_up()
-            elif next_moviment == 3:
-                self.move_left()
-            elif next_moviment == 4:
-                self.move_right()
+            self.move(randint(1,4))
+    
+    def copy(self):
+        board = Board(self.dimension)
+        board.zero_position[0] = self.zero_position[0]
+        board.zero_position[1] = self.zero_position[1]
+        board.board = self.board.copy()
+        return board
+
+
         
 
-
-
-
-target = Board(5)
-# board = Board(3)
+target = Board(3)
+board = Board(3)
 print(target)
-# print(board)
-# print(target == board)
+print(board)
+print(target == board)
 print(target.manhatan_distance_target())
 target.shuffle()
 print(target)
 print(target.manhatan_distance_target())
-# print(target == board)
+
+lista = [target, board]
+# target.move_down()
+print(target in lista)
+board = target.copy()
+print(board)
+board.move_down()
+print(target)
+print(board)
+target.move_down()
+print(target)
+print(target == board)
