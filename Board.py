@@ -72,7 +72,7 @@ class Board:
                     distance += (abs(target_position[0] - row) + abs(target_position[1] - column))
         return distance
 
-    def shuffle(self, number_of_moviments = randint(10,20)):
+    def shuffle(self, number_of_moviments = randint(20,50)):
         for i in range(0, number_of_moviments):
             self.move(randint(1,4))
     
